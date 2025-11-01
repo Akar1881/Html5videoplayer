@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= type %> Player - <%= id %></title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1><%= type.toUpperCase() %> ID: <%= id %></h1>
+
+  <% if (files.length === 0) { %>
+    <p>No video sources found.</p>
+  <% } else { %>
+    <video id="video" controls autoplay playsinline width="100%">
+      <source src="<%= files[files.length - 1].file %>" type="application/x-mpegURL">
+      <% subtitles.forEach(sub => { %>
+        <track label="<%= sub.lang %>" kind="subtitles" srclang="<%= sub.lang %>" src="<%= sub.url %>">
+      <% }) %>
+      Your browser does not support the video tag.
+    </video>
+  <% } %>
+
+  <p>
+    <a href="/">← Back</a>
+  </p>
+</body>
+</html>
